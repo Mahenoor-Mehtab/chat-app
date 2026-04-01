@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: " Chat Messenger",
-  description: "Chat Messenger is a real-time messaging application built with Next.js and Tailwind CSS.",
+  title: "Chat Messenger",
+  description: "A premium real-time messaging application.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="h-full bg-[#0f0c29] text-white selection:bg-purple-500/30">
+        <main className="h-full flex flex-col">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
