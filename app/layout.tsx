@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ToasterContext from "./context/ToasterContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,8 @@ export default function RootLayout({
     >
       <body className="h-full bg-[#0f0c29] text-white selection:bg-purple-500/30">
         <main className="h-full flex flex-col">
+
+          <ToasterContext/>
           {children}
         </main>
       </body>
