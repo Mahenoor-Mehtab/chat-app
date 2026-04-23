@@ -1,8 +1,7 @@
 import prisma from "../lib/prismadb";
-
 import getSession from "./getSession";
 
-const getCurrentUser = async ()=>{
+const getCurrentUser = async ()=>{   
     try{
         const session = await getSession()
 
