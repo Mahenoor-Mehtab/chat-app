@@ -3,6 +3,7 @@ import getMessages from "@/app/actions/getMessages";
 import EmptyState from "@/app/components/EmptyState";
 import Header from '@/app/conversations/[conversationId]/components/Header'
 import Body from "./components/Body";
+import Form from "./components/Form";
 
 interface IParams{
     conversationId: string
@@ -31,6 +32,7 @@ const ConversationId = async ({params}: {params:IParams})=>{
             <Header conversation={conversation}/>
 
             <Body/>
+            <Form/>
           </div>
         </div>
     )
