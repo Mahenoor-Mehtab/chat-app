@@ -20,34 +20,33 @@ const Header:React.FC<HeaderProps> = ({conversation}) => {
       if(conversation.isGroup){
         return `${conversation.users.length} members`;
       }
-     
     return 'Active'
-    
   },[conversation])
    
-
-
   return (
-    <div>
-    <div>
-      <Link href="/conversation">
-      <HiChevronLeft size={32}/>
-      </Link>
-      <Avatar user={otherUser}/>
-      <div>
-        <div>
-          {conversation.name || otherUser.name}
+    <div className="bg-[#0f0c29]/80 backdrop-blur-xl w-full flex border-b border-white/10 sm:px-4 py-3 px-4 lg:px-6 justify-between items-center shadow-sm">
+      <div className="flex gap-3 items-center">
+        <Link 
+          href="/conversations" 
+          className="lg:hidden block text-purple-400 hover:text-purple-300 transition cursor-pointer"
+        >
+          <HiChevronLeft size={32}/>
+        </Link>
+        <Avatar user={otherUser}/>
+        <div className="flex flex-col">
+          <div className="text-white font-bold">
+            {conversation.name || otherUser.name}
+          </div>
+          <div className="text-xs font-medium text-purple-400">
+            {statusText}
+          </div>
         </div>
-
-        <div>
-          { statusText}
-        </div>
-
       </div>
-    </div>
-<HiEllipsisHorizontal
-onClick={()=> { }}
-/>
+      <HiEllipsisHorizontal
+        size={32}
+        onClick={()=> { }}
+        className="text-gray-400 cursor-pointer hover:text-purple-400 transition"
+      />
     </div>
   )
 }

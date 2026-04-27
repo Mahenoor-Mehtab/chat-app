@@ -40,8 +40,8 @@ export async function POST(request: Request) {
         // Message create karo
         const newMessage = await prisma.message.create({
             data: {
-                body: message,
-                image: image,
+               body: message || null,
+image: image || null,
                 conversation: { connect: { id: conversationId } },
                 sender: { connect: { id: currentUser.id } }, 
                 seen: { connect: { id: currentUser.id } }     

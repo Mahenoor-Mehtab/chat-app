@@ -9,33 +9,30 @@ interface IParams{
     conversationId: string
 }
 
-
-const ConversationId = async ({params}: {params:IParams})=>{
-   const { conversationId } = await params;  
-    
-    const conversation = await getConversationById(conversationId); // jisse conversation ho rahi ho
+const ConversationId = async ({params}: {params:IParams}) => {
+    const { conversationId } = await params;  
+    const conversation = await getConversationById(conversationId);
     const messages = await getMessages(conversationId);
-    if(!conversation){
+
+    if(!conversation) {
         return (
-            <div>
-                <div>
+            <div className="lg:pl-80 h-full bg-[#0f0c29]">
+                <div className="h-full flex flex-col">
                     <EmptyState/>
                 </div>
             </div>
         )
     }
 
-
     return (
-        <div>
-          <div>
+        <div className="lg:pl-80 h-full bg-[#0f0c29]">
+          <div className="h-full flex flex-col">
             <Header conversation={conversation}/>
-
-            <Body initialMessages = {messages}/>
+            <Body initialMessages={messages}/>
             <Form/>
           </div>
         </div>
     )
 }
 
-export default ConversationId;
+export default ConversationId
