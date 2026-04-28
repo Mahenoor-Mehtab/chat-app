@@ -35,11 +35,11 @@ const MessageBox:React.FC<MessageBoxProps>  = ({data, isLast}) => {
       <div className={body}>
         <div className="flex items-center gap-2">
           <div className="text-xs text-gray-400 font-semibold">
-            {data.sender.name}
+            {data.sender?.name}
           </div>
-          <div className="text-[10px] text-gray-500">
-            {format(new Date(data.createdAt), 'p')}
-          </div>
+         <div className="text-[10px] text-gray-500">
+        {data.createdAt && format(new Date(data.createdAt), 'p')}
+    </div>
         </div>
         <div className={message}>
           {data.image ? (
@@ -51,7 +51,7 @@ const MessageBox:React.FC<MessageBoxProps>  = ({data, isLast}) => {
               className="object-cover cursor-pointer hover:scale-105 transition translate" 
             />
           ) : (
-            <div className="leading-relaxed">{data.body}</div>
+            <div className="leading-relaxed">{data.body ?? ''}</div>
           )}
         </div>
         {isLast && isOwn && data.seen && data.seen.length > 0 && (

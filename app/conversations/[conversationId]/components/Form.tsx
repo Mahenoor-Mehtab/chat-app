@@ -12,11 +12,17 @@ const Form = () => {
         defaultValues: { message: '' }
     })
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+      const messageContent = data.message;
       setValue('message', '', { shouldValidate: true })
-      axios.post('/api/messages', { ...data, conversationId })
+      try {
+        await axios.post('/api/messages', { ...data, conversationId })
+      } catch (error) {
+        setValue('message', messageContent);
+        // Consider adding toast notification for user feedback
+        console.error('Failed to send message:', error);
+      }
     }
-
     const handleUpload = (result : any) => {
       axios.post('/api/messages', {
        image: result?.info?.secure_url || result?.secure_url,

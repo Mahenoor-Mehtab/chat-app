@@ -14,6 +14,10 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { message, image, conversationId } = body;
 
+        if (!message && !image) {
+    return new NextResponse("Message or image is required", { status: 400 });
+}
+
         //  Case 2: ConversationId missing
         if (!conversationId) {
             return new NextResponse('ConversationId is required', { status: 400 });
@@ -41,8 +45,8 @@ export async function POST(request: Request) {
         const newMessage = await prisma.message.create({
             data: {
                body: message || null,
-image: image || null,
-                conversation: { connect: { id: conversationId } },
+               image: image || null,                
+               conversation: { connect: { id: conversationId } },
                 sender: { connect: { id: currentUser.id } }, 
                 seen: { connect: { id: currentUser.id } }     
             },

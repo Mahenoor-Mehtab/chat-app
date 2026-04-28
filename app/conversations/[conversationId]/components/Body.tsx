@@ -15,8 +15,15 @@ const Body: React.FC<BodyProps> = ({initialMessages}) => {
 
   useEffect(() => {
     axios.post(`/api/conversations/${conversationId}/seen`)
+      .catch((error) => {
+        console.error('Failed to mark conversation as seen:', error)
+      })
   }, [conversationId])
 
+    useEffect(()=>{
+    bottomRef.current?.scrollIntoView();
+  }, [messages])
+  
   return (
     <div className="flex-1 overflow-y-auto bg-[#0f0c29]">
       {messages.map((message, i) => (
